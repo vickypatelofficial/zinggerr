@@ -12,5 +12,5 @@ class PasswordChanged extends LoginEvent {
 
 class PasswordVisibilityChanged extends LoginEvent {
   final bool isVisible;
-  PasswordVisibilityChanged(this.isVisible);
+PasswordVisibilityChanged(this.isVisible);
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zinggerr/screens/dashboard/dashboard_screen.dart';
+import 'package:zinggerr/widgets/custom_status_bar_widget.dart';
 
 class BottomNavScreen extends StatefulWidget {
   const BottomNavScreen({Key? key}) : super(key: key);
