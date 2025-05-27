@@ -15,30 +15,91 @@ class _TaskScreenState extends State<TaskScreen>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
   final List<Map<String, dynamic>> _completedTasks = [
-    {
-      'id': '1',
-      'title': 'Complete project documentation',
-      // 'description': 'Write detailed documentation for the new features',
+    { 
+      'title': 'Complete my task which you have assign', 
       'deadline': '10 April 2025',
       'completedDate': '27 May 2025',
-      'assignBy': 'Chandan Singh',
+      'assignBy': 'Vicky Patel',
+      'status': 'Completed',
+    },
+    { 
+      'title': 'Complete my task which you have assign', 
+      'deadline': '10 April 2025',
+      'completedDate': '27 May 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Completed',
+    },
+    { 
+      'title': 'Complete my task which you have assign', 
+      'deadline': '10 April 2025',
+      'completedDate': '27 May 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Completed',
+    },
+    { 
+      'title': 'Complete my task which you have assign', 
+      'deadline': '10 April 2025',
+      'completedDate': '27 May 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Completed',
+    },
+    { 
+      'title': 'Complete my task which you have assign', 
+      'deadline': '10 April 2025',
+      'completedDate': '27 May 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Completed',
+    },
+    { 
+      'title': 'Complete my task which you have assign', 
+      'deadline': '10 April 2025',
+      'completedDate': '27 May 2025',
+      'assignBy': 'Vicky Patel',
       'status': 'Completed',
     },
   ];
 
   final List<Map<String, dynamic>> _pendingTasks = [
-    {
-      'id': '2',
-      'title': 'Implement user authentication',
+    { 
+      'title': 'Submit remaining assignment of all subjects',
       'deadline': '07 April 2025',
-      'assignBy': 'Chandan Singh',
+      'assignBy': 'Vicky Patel',
       'status': 'Pending',
     },
-    {
-      'id': '3',
-      'title': 'Fix navigation bugs',
-      'deadline': '15 April 2025',
-      'assignBy': 'Rahul Sharma',
+    { 
+      'title': 'Submit remaining assignment of all subjects',
+      'deadline': '07 April 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Pending',
+    },
+    { 
+      'title': 'Submit remaining assignment of all subjects',
+      'deadline': '07 April 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Pending',
+    },
+    { 
+      'title': 'Submit remaining assignment of all subjects',
+      'deadline': '07 April 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Pending',
+    },
+    { 
+      'title': 'Submit remaining assignment of all subjects',
+      'deadline': '07 April 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Pending',
+    },
+    { 
+      'title': 'Submit remaining assignment of all subjects',
+      'deadline': '07 April 2025',
+      'assignBy': 'Vicky Patel',
+      'status': 'Pending',
+    },
+    { 
+      'title': 'Submit remaining assignment of all subjects',
+      'deadline': '07 April 2025',
+      'assignBy': 'Vicky Patel',
       'status': 'Pending',
     },
   ];
@@ -59,8 +120,7 @@ class _TaskScreenState extends State<TaskScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        title: 'Tasks',
-        showSearchDialog: () {},
+        title: 'Tasks', 
         showNotifications: (BuildContext) {},
         notificationCount: 3,
       ),
@@ -73,7 +133,6 @@ class _TaskScreenState extends State<TaskScreen>
               controller: _tabController,
               indicatorColor: AppColors.primaryColor,
               labelColor: AppColors.primaryColor,
-              // ignore: deprecated_member_use
               unselectedLabelColor: AppColors.textColor.withOpacity(0.6),
               tabs: const [
                 Tab(
@@ -92,15 +151,12 @@ class _TaskScreenState extends State<TaskScreen>
             child: TabBarView(
               controller: _tabController,
               children: [
-                // Completed Tasks Tab
                 CompletedTasksList(
                   tasks: _completedTasks,
                 ),
-                // Pending Tasks Tab
                 PendingTasksList(
                   tasks: _pendingTasks,
                   onComplete: (task) {
-                    // Handle task completion logic here
                   },
                 ),
               ],

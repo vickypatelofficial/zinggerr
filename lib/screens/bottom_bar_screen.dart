@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:zinggerr/config/app_colors.dart';
 import 'package:zinggerr/screens/dashboard/dashboard_screen.dart';
 import 'package:zinggerr/screens/montessari/montessari_training_screen.dart';
 import 'package:zinggerr/screens/task/task_screen.dart';
+import 'package:zinggerr/widgets/custom_background_widget.dart';
 import 'package:zinggerr/widgets/custom_status_bar_widget.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -18,7 +20,11 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     const DashboardScreen(), // DashboardScreen(),
     const MontessoriTrainingScreen(), // MontessoriTrainingScreen(),
     const TaskScreen(), // TasksScreen(),
-    const Placeholder(), // OnlineClassesScreen(),
+    Container(
+      child: Center(
+        child: Text('Working...'),
+      ),
+    ), // OnlineClassesScreen(),
   ];
 
   @override
@@ -26,8 +32,9 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
     return Scaffold(
       body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AppColors.white,
         currentIndex: _currentIndex,
-        selectedItemColor: Colors.blueAccent,
+        selectedItemColor: AppColors.primaryColor,
         unselectedItemColor: Colors.grey,
         onTap: (index) => setState(() => _currentIndex = index),
         items: const [
@@ -40,12 +47,12 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             label: 'Training',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.task),
+            icon: Icon(Icons.checklist),
             label: 'Tasks',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.video_call),
-            label: 'Online Classes',
+            label: 'Video Conferenece',
           ),
         ],
       ),

@@ -10,10 +10,10 @@ class BuildStatsRow extends StatelessWidget {
   final int totalFaculty;
 
   const BuildStatsRow({
-    Key? key,
+    super.key,
     required this.totalCourses,
     required this.totalFaculty,
-  }) : super(key: key);
+  });
 
   Widget _buildStatCard(
     BuildContext context, {
@@ -406,9 +406,10 @@ class CoursesSectionCustom extends StatelessWidget {
                         const SizedBox(height: 12),
 
                         /// Category + Tags
-                        Wrap(
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           spacing: 8,
-                          runSpacing: 4,
+                          // runSpacing: 4,
                           children: [
                             _buildInfoChip(
                               context,

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:zinggerr/config/app_colors.dart';
 import 'package:zinggerr/screens/dashboard/dashboard_custom_widgets.dart';
+import 'package:zinggerr/screens/dashboard/todolist_screen.dart';
 import 'package:zinggerr/screens/notification/notification_screen.dart';
 import 'package:zinggerr/widgets/custom_app_bar.dart';
 
-class DashboardScreen extends StatefulWidget{
+class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
 
   @override
@@ -45,8 +46,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       "id": 1,
       "name": "Testing Nido Interactive Asset...",
       "slug": "Testing-Nido-Interactive-Assets",
-      "image":
-          "https://www.zinggerr.com/storage/courses/1Sp6GuEJSeMx0ebLRPtjMOwzykONeKsbrosmIfGa.jpg",
+      "image": "https://www.zinggerr.com/storage/courses/1Sp6GuEJSeMx0ebLRPtjMOwzykONeKsbrosmIfGa.jpg",
       "category": "Select Category",
       "tags": "Basic",
       "rating": 0,
@@ -60,8 +60,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         title: 'Dashboard',
         onMenuPressed: () {
           Scaffold.of(context).openDrawer();
-        },
-        showSearchDialog: () {},
+        }, 
         showNotifications: (context) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return NotificationsScreen();
@@ -152,13 +151,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
               date: '27 May 2025',
               tasks: ["new task", "second task"],
               onAdd: () {
-                // Add logic
+                
               },
               onViewAll: () {
-                // View all logic
+                Navigator.push(context, MaterialPageRoute(builder: (context){
+                  return const ToDoListScreen();
+                }));
               },
               onDeleteTask: (index) {
-                // Delete logic
+               
               },
             ),
           ],
