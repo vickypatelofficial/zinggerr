@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:zinggerr/screens/dashboard/dashboard_screen.dart';
+import 'package:zinggerr/screens/montessari/montessari_training_screen.dart';
+import 'package:zinggerr/screens/task/task_screen.dart';
 import 'package:zinggerr/widgets/custom_status_bar_widget.dart';
 
 class BottomNavScreen extends StatefulWidget {
@@ -14,8 +16,8 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
 
   final List<Widget> _screens = [
     const DashboardScreen(), // DashboardScreen(),
-    const Placeholder(), // MontessoriTrainingScreen(),
-    const Placeholder(), // TasksScreen(),
+    const MontessoriTrainingScreen(), // MontessoriTrainingScreen(),
+    const TaskScreen(), // TasksScreen(),
     const Placeholder(), // OnlineClassesScreen(),
   ];
 
