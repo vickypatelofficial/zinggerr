@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:zinggerr/config/app_colors.dart';
+import 'package:zinggerr/screens/dashboard/custom_end_drawer.dart';
 import 'package:zinggerr/screens/dashboard/dashboard_custom_widgets.dart';
 import 'package:zinggerr/screens/dashboard/todolist_screen.dart';
 import 'package:zinggerr/screens/notification/notification_screen.dart';
@@ -46,21 +47,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
       "id": 1,
       "name": "Testing Nido Interactive Asset...",
       "slug": "Testing-Nido-Interactive-Assets",
-      "image": "https://www.zinggerr.com/storage/courses/1Sp6GuEJSeMx0ebLRPtjMOwzykONeKsbrosmIfGa.jpg",
+      "image":
+          "https://www.zinggerr.com/storage/courses/1Sp6GuEJSeMx0ebLRPtjMOwzykONeKsbrosmIfGa.jpg",
       "category": "Select Category",
       "tags": "Basic",
       "rating": 0,
     }
   ];
 
+ GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scaffoldKey,
+      drawer: CustomEndDrawer(notificationCount: 5), 
       appBar: CustomAppBar(
         title: 'Dashboard',
         onMenuPressed: () {
-          Scaffold.of(context).openDrawer();
-        }, 
+          scaffoldKey.currentState?.openDrawer();
+        },
         showNotifications: (context) {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return NotificationsScreen();
@@ -150,17 +155,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
             TodoCardWidgetCustom(
               date: '27 May 2025',
               tasks: ["new task", "second task"],
-              onAdd: () {
-                
-              },
+              onAdd: () {},
               onViewAll: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context){
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return const ToDoListScreen();
                 }));
               },
-              onDeleteTask: (index) {
-               
-              },
+              onDeleteTask: (index) {},
             ),
           ],
         ),

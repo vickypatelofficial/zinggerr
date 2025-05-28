@@ -8,6 +8,8 @@ import 'package:zinggerr/config/app_colors.dart';
 import 'package:zinggerr/config/app_text.dart';
 import 'package:zinggerr/main.dart';
 import 'package:zinggerr/screens/auth/forgot_password_screen.dart';
+import 'package:zinggerr/screens/auth/sign_up_screen.dart';
+import 'package:zinggerr/screens/bottom_bar_screen.dart';
 import 'package:zinggerr/utils/ui_helper.dart';
 import 'package:zinggerr/widgets/custom_buton.dart';
 import 'package:zinggerr/widgets/custom_scaffold.dart';
@@ -35,8 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return StatusBarCustom(
         child: CustomScaffold(
-          child: Center(
-                child: Container(
+      child: Center(
+        child: Container(
           // padding: const EdgeInsets.all(20),
           margin: EdgeInsets.symmetric(horizontal: screenWidth * .05),
           decoration: BoxDecoration(
@@ -78,8 +80,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     suffixWidget: InkWell(
                       onTap: () {
-                        context.read<LoginBloc>().add(
-                            PasswordVisibilityChanged(!state.isPasswordVisible));
+                        context.read<LoginBloc>().add(PasswordVisibilityChanged(
+                            !state.isPasswordVisible));
                       },
                       child: Icon(
                         state.isPasswordVisible
@@ -120,18 +122,29 @@ class _LoginScreenState extends State<LoginScreen> {
               UIHelpers.verticalSpace(10),
               CustomButton(
                 text: AppTexts.login,
-                ontap: () {/* Trigger login event */},
+                ontap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return const BottomNavScreen();
+                  }));
+                },
               ),
               UIHelpers.verticalSpace(10),
-              Text(AppTexts.dontHaveAccount,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall!
-                      .copyWith(color: AppColors.primaryColor))
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return SignUpScreen();
+                  }));
+                },
+                child: Text(AppTexts.dontHaveAccount,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: AppColors.primaryColor)),
+              )
             ],
           ),
-                ),
-              ),
-        ));
+        ),
+      ),
+    ));
   }
 }

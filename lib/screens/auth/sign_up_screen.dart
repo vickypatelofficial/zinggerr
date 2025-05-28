@@ -2,6 +2,7 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:zinggerr/config/app_colors.dart';
 import 'package:zinggerr/config/app_text.dart';
+import 'package:zinggerr/screens/auth/login_screen.dart';
 import 'package:zinggerr/utils/ui_helper.dart';
 import 'package:zinggerr/widgets/custom_buton.dart';
 import 'package:zinggerr/widgets/custom_scaffold.dart';
@@ -231,14 +232,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   UIHelpers.verticalSpace(12),
                   GestureDetector(
                     onTap: () {
-                      // Go to Login screen
+                       Navigator.push(context,
+                          MaterialPageRoute(builder: (context) {
+                        return const LoginScreen();
+                      }));
                     },
                     child: Text(
                       "Already have an account?",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: AppColors.primaryColor),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppColors.primaryColor),
                     ),
                   )
                 ],
