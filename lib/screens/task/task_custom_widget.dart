@@ -477,3 +477,240 @@ class PendingTasksList extends StatelessWidget {
       ),
     );
   }
+
+
+
+
+
+
+class TaskCard extends StatelessWidget {
+  final String taskName;
+  final String deadline;
+  final String assignBy;
+  final String? completedDate;
+  final bool isCompleted;
+  final VoidCallback? onTap;
+  final Map<String, dynamic> task;
+
+  const TaskCard({
+    Key? key,
+    required this.taskName,
+    required this.deadline,
+    required this.assignBy,
+    this.completedDate,
+    required this.isCompleted,
+    this.onTap, required this.task,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: (){
+        _showTaskDetails(context, task);
+      },
+      child: PatternBackground(
+        borderRadius: BorderRadius.circular(8),
+        elevation: 2,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+         
+           
+            border: Border.all(
+              color: isCompleted
+            ? AppColors.greenLight.withOpacity(0.3)
+            : AppColors.primaryColor.withOpacity(0.2),
+              width: 1.2,
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+            color: isCompleted
+                ? AppColors.greenLight.withOpacity(0.18)
+                : AppColors.primaryColor.withOpacity(0.18),
+            shape: BoxShape.circle,
+                ),
+                child: Icon(
+            isCompleted ? Icons.check_circle : Icons.pending_actions,
+            color: isCompleted
+                ? AppColors.greenLight
+                : AppColors.primaryColor,
+            size: 22,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Text(
+            taskName,
+            style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: isCompleted
+                ? AppColors.greenLight
+                : AppColors.primaryColor,
+                ),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              Transform.scale(
+                scale: 1.2,
+                child: Checkbox(
+            value: isCompleted,
+            onChanged: null,
+            activeColor: AppColors.greenLight,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(4),
+            ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          _buildTaskDetailRow(
+            context,
+            icon: Icons.calendar_today,
+            label: 'Deadline:',
+            value: deadline,
+          ),
+          if (completedDate != null)
+            _buildTaskDetailRow(
+              context,
+              icon: Icons.event_available,
+              label: 'Completed:',
+              value: completedDate!,
+            ),
+          _buildTaskDetailRow(
+            context,
+            icon: Icons.person,
+            label: 'Assigned by:',
+            value: assignBy,
+          ),
+          const SizedBox(height: 10),
+          Divider(
+            color: AppColors.grey.withOpacity(0.25),
+            height: 1,
+            thickness: 1,
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(
+              horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+            color: isCompleted
+                ? AppColors.greenLight.withOpacity(0.15)
+                : AppColors.errorColor.withOpacity(0.12),
+            borderRadius: BorderRadius.circular(20),
+                ),
+                child: Text(
+            isCompleted ? 'Completed' : 'Pending',
+            style: Theme.of(context).textTheme.labelLarge?.copyWith(
+                  color: isCompleted
+                ? AppColors.greenLight
+                : AppColors.errorColor,
+                  fontWeight: FontWeight.w600,
+                ),
+                ),
+              ),
+                const Spacer(),
+                if (!isCompleted)
+                InkWell(
+                  borderRadius: BorderRadius.circular(8),
+                  onTap: () {
+                  // Edit task action
+                  },
+                  child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.primaryColor.withOpacity(0.08),
+                    borderRadius: BorderRadius.circular(20),
+                    boxShadow: [
+                    BoxShadow(
+                      color: AppColors.primaryColor.withOpacity(0.10),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
+                    ),
+                    ],
+                  ),
+                  padding: const EdgeInsets.all(8),
+                  child: const Icon(Icons.edit, color: AppColors.primaryColor),
+                  ),
+                ),
+            ],
+          ),
+              ],
+            ),
+          ),
+        ))
+    );
+  }
+
+  Widget _buildTaskDetailRow(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      child: Row(
+        children: [
+          Icon(icon, size: 16, color: AppColors.primaryColor),
+          const SizedBox(width: 8),
+          Text(
+            label,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+          ),
+          const SizedBox(width: 4),
+          Expanded(
+            child: Text(
+              value,
+              style: Theme.of(context).textTheme.bodyMedium,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  
+void _showTaskDetails(BuildContext context, Map<String, dynamic> task) {
+  showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(task['task']),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Description: ${task['description'] ?? 'No description'}'),
+          const SizedBox(height: 8),
+          Text('Deadline: ${task['deadline']}'),
+          if (task['completedDate'] != null)
+            Text('Completed: ${task['completedDate']}'),
+          const SizedBox(height: 8),
+          Text('Assigned by: ${task['assignBy']}'),
+        ],
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Close'),
+        ),
+      ],
+    ),
+  );
+}
+
+}

@@ -21,8 +21,7 @@ class CreateRoleScreen extends StatelessWidget {
         appBar: const CustomAppBar(
           title: 'Create Role',
         ),
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView( 
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
