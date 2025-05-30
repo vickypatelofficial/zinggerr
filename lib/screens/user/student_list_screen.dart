@@ -14,13 +14,13 @@ import 'package:zinggerr/widgets/custom_scaffold.dart';
 import 'package:zinggerr/widgets/custom_status_bar_widget.dart';
 import 'package:zinggerr/widgets/custom_text_field.dart';
 
-class UserListScreen extends StatelessWidget {
-  const UserListScreen({super.key});
+class StudentListScreen extends StatelessWidget {
+  const StudentListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     // Mock data - replace with your actual data
-    final users = [
+    final student = [
       {
         'name': 'Vicky patel',
         'email': 'vicky@gmail.com',
@@ -77,7 +77,7 @@ class UserListScreen extends StatelessWidget {
     return StatusBarCustom(
       child: Scaffold(
         appBar: const CustomAppBar(
-          title: 'Users List',
+          title: 'Students List',
         ),
         body: Column(
           children: [
@@ -109,19 +109,19 @@ class UserListScreen extends StatelessWidget {
                       ListView.separated(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
-                        itemCount: users.length,
+                        itemCount: student.length,
                         separatorBuilder: (context, index) =>
                             const Divider(height: 24),
                         itemBuilder: (context, index) {
-                          final user = users[index];
+                          final user = student[index];
                           return ListView.separated(
                             shrinkWrap: true,
                             physics: const NeverScrollableScrollPhysics(),
-                            itemCount: users.length,
+                            itemCount: student.length,
                             separatorBuilder: (context, index) =>
                                 const Divider(height: 24),
                             itemBuilder: (context, index) {
-                              final user = users[index];
+                              final user = student[index];
                               return UserListItem(
                                 name: user['name'].toString(),
                                 email: user['email'].toString(),
@@ -133,8 +133,7 @@ class UserListScreen extends StatelessWidget {
                                 image: user['image'] as String,
                                 onEdit: () {},
                                 onDelete: () =>
-                                    _showDeleteConfirmation(context),
-                                onInfo: () {},
+                                    _showDeleteConfirmation(context), onInfo: () {  },
                               );
                             },
                           );

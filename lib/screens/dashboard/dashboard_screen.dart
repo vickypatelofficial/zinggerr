@@ -55,12 +55,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
     }
   ];
 
- GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      drawer: CustomEndDrawer(notificationCount: 5), 
+      drawer: const CustomEndDrawer(notificationCount: 5),
       appBar: CustomAppBar(
         title: 'Dashboard',
         onMenuPressed: () {
@@ -99,11 +99,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
 
             const SizedBox(height: 20),
-
             // Stats Cards
             BuildStatsRow(
                 totalCourses: totalCourses, totalFaculty: totalCourses),
-
             const SizedBox(height: 20),
 
             // Calendar Section

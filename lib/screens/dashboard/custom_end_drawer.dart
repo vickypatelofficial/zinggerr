@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:zinggerr/config/app_colors.dart';
 import 'package:zinggerr/screens/dashboard/dashboard_screen.dart';
+import 'package:zinggerr/screens/role/create_role_screen.dart';
+import 'package:zinggerr/screens/role/role_list_screen.dart' show RolesListScreen;
+import 'package:zinggerr/screens/user/create_user_screen.dart';
+import 'package:zinggerr/screens/user/student_list_screen.dart';
+import 'package:zinggerr/screens/user/user_list_screen.dart';
 
 class CustomEndDrawer extends StatefulWidget {
   final int notificationCount;
@@ -21,7 +26,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.primaryColor,
             ),
             child: Column(
@@ -161,6 +166,11 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                     style: Theme.of(context).textTheme.bodyMedium),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const AddUserScreen(),
+                      ));
                 },
               ),
               ListTile(
@@ -168,6 +178,11 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                     Text('List', style: Theme.of(context).textTheme.bodyMedium),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const UserListScreen(),
+                      ));
                 },
               ),
               ListTile(
@@ -182,6 +197,9 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                     style: Theme.of(context).textTheme.bodyMedium),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(
+                    builder: (context) => const StudentListScreen(),
+                  ));
                 },
               ),
             ],
@@ -199,7 +217,14 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                 title: Text('Create',
                     style: Theme.of(context).textTheme.bodyMedium),
                 onTap: () {
+
                   Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  CreateRoleScreen(),
+                    ),
+                  );
                 },
               ),
               ListTile(
@@ -207,6 +232,12 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                     Text('List', style: Theme.of(context).textTheme.bodyMedium),
                 onTap: () {
                   Navigator.pop(context);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RolesListScreen(),
+                    ),
+                  );
                 },
               ),
             ],
@@ -394,7 +425,7 @@ class _CustomEndDrawerState extends State<CustomEndDrawer> {
                     ),
                   )
                 : null,
-            onTap:(){
+            onTap: () {
               Navigator.pop(context);
             },
           )

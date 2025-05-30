@@ -203,7 +203,7 @@ String? validateEmail(String? value) {
 
 String? validateSimple(String value, {String? fieldName}) {
   if (value.isEmpty) {
-    return '${fieldName ?? 'require_field'} ${'cannot_be_empty'}';
+    return '${fieldName ?? 'require_field'} cannot be empty';
   }
   return null;
 }

@@ -3,9 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:zinggerr/blocs/login/login_bloc.dart';
 import 'package:zinggerr/config/app_theme.dart';
 import 'package:zinggerr/screens/auth/login_screen.dart';
-import 'package:zinggerr/screens/bottom_bar_screen.dart';
-import 'package:zinggerr/screens/dashboard/dashboard_screen.dart';
-import 'package:zinggerr/screens/user/user_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +11,7 @@ void main() {
 double screenHeight = 0;
 double screenWidth = 0;
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
   // This widget is the root of your application.
